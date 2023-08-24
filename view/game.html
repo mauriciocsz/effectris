@@ -1,0 +1,289 @@
+<html>
+    <body>
+        <style>
+            @keyframes charged {
+                    0% {
+                        background-color: #ff00ea;
+                    }
+                    50% {
+                        background-color: #9d00ff;
+                    }
+                    100% {
+                        background-color: #ff00ea;
+                    }
+                }
+
+            .mainTable {
+                border-collapse: collapse;
+                border: 1px solid #000000
+
+            }
+
+            .fieldTd {
+                width: 50px;
+                height: 50px;
+                border: 1px solid rgb(27, 27, 27);
+                text-align: center;
+                vertical-align: center;
+                font-family: monospace;
+                font-size: 18px;
+
+            }
+
+            .incomingBarTd {
+                width: 10px;
+                height: 50px;
+            }
+
+            .displayTd {
+                width: 25px;
+                height: 25px;
+                text-align: center;
+                vertical-align: center;
+                font-family: monospace;
+                font-size: 18px;
+            }
+
+            .displayFilledTd {
+                width: 25px;
+                height: 25px;
+                /* border: 1px solid rgb(0, 0, 0); */
+                text-align: center;
+                vertical-align: center;
+                font-family: monospace;
+                font-size: 18px;
+            }
+
+            .otherPlayersTd {
+                width: 15px;
+                height: 15px;
+                text-align: center;
+                vertical-align: center;
+                font-family: monospace;
+                font-size: 18px;
+            }
+
+            body {
+                background-color: #292929;
+            }
+
+            #incomingBar {
+                background-color: red;
+                height: 1000px;
+                width: 10px;
+            }
+
+        </style>
+        <div style="display: flex;">
+            <div>
+                <div id="nextPieceCanvas" style="margin: 10px;"></div>
+                <div id="powers" style="margin: 10px;">
+                    <div id="powerBar" style="background-color: #ff00ea; height: 24px; width: 0%;"></div>
+                    <a id="barMsg" style="color: white; font-weight: 200; visibility:hidden;">Press J or K</a>
+                </div>
+            </div>
+
+            <div id="controls" style="visibility: visible ;width: 500px;height: 600px;margin: 107px;position: absolute; background-color: #292929; text-align: center; color: #ffffff; font-size: large;">
+                <h1>Bem vindo ao Effectris!</h1>
+                <h2>Controles:</h2>
+
+                <p style="font-weight: 400;">CIMA - gira peça</p>
+                
+                <p style="font-weight: 400;">BAIXO - desce rápido</p>
+                
+                <p style="font-weight: 400;">ESQUERDA - move peça para a esquerda</p>
+                
+                <p style="font-weight: 400;">DIREITA - move peça para a direita</p>
+
+                <p style="font-weight: 400;">C - salva/retira uma peça</p>
+
+                <p style="font-weight: 400;">ESPAÇO - coloca peça imediatamente</p>
+
+                <h2>Poderes</h2>
+                
+                <p style="font-weight: 400;">J - usa uma spell</p>
+                
+                <p style="font-weight: 400;">K - usa uma curse</p>
+
+                (Poderes só podem ser lançados quanto a barra roxa da esquerda superior estiver completa)
+
+                <br>
+            </div>
+
+            <div id="canvas" style="flex-shrink: 0;"></div>
+            
+            <div id="incomingBar"></div>
+
+            <div class="nextPieces">
+                <div id="next_1" style="margin: 10px;">
+                    <table>
+                        <tr>
+                            <td class="displayTd"></td>
+                            <td class="displayTd"></td>
+                            <td class="displayTd"></td>
+                            <td class="displayTd"></td>
+                        </tr>
+                        <tr>
+                            <td class="displayTd"></td>
+                            <td class="displayTd"></td>
+                            <td class="displayTd"></td>
+                            <td class="displayTd"></td>
+                        </tr>
+                        <tr>
+                            <td class="displayTd"></td>
+                            <td class="displayTd"></td>
+                            <td class="displayTd"></td>
+                            <td class="displayTd"></td>
+                        </tr>
+                        <tr>
+                            <td class="displayTd"></td>
+                            <td class="displayTd"></td>
+                            <td class="displayTd"></td>
+                            <td class="displayTd"></td>
+                        </tr>
+                    </table>
+                </div>
+                <div id="next_2" style="margin: 10px;">
+                    <table>
+                        <tr>
+                            <td class="displayTd"></td>
+                            <td class="displayTd"></td>
+                            <td class="displayTd"></td>
+                            <td class="displayTd"></td>
+                        </tr>
+                        <tr>
+                            <td class="displayTd"></td>
+                            <td class="displayTd"></td>
+                            <td class="displayTd"></td>
+                            <td class="displayTd"></td>
+                        </tr>
+                        <tr>
+                            <td class="displayTd"></td>
+                            <td class="displayTd"></td>
+                            <td class="displayTd"></td>
+                            <td class="displayTd"></td>
+                        </tr>
+                        <tr>
+                            <td class="displayTd"></td>
+                            <td class="displayTd"></td>
+                            <td class="displayTd"></td>
+                            <td class="displayTd"></td>
+                        </tr>
+                    </table>
+                </div>
+                <div id="next_3" style="margin: 10px;">
+                    <table>
+                        <tr>
+                            <td class="displayTd"></td>
+                            <td class="displayTd"></td>
+                            <td class="displayTd"></td>
+                            <td class="displayTd"></td>
+                        </tr>
+                        <tr>
+                            <td class="displayTd"></td>
+                            <td class="displayTd"></td>
+                            <td class="displayTd"></td>
+                            <td class="displayTd"></td>
+                        </tr>
+                        <tr>
+                            <td class="displayTd"></td>
+                            <td class="displayTd"></td>
+                            <td class="displayTd"></td>
+                            <td class="displayTd"></td>
+                        </tr>
+                        <tr>
+                            <td class="displayTd"></td>
+                            <td class="displayTd"></td>
+                            <td class="displayTd"></td>
+                            <td class="displayTd"></td>
+                        </tr>
+                    </table>
+                </div>
+                <div id="next_4" style="margin: 10px;">
+                    <table>
+                        <tr>
+                            <td class="displayTd"></td>
+                            <td class="displayTd"></td>
+                            <td class="displayTd"></td>
+                            <td class="displayTd"></td>
+                        </tr>
+                        <tr>
+                            <td class="displayTd"></td>
+                            <td class="displayTd"></td>
+                            <td class="displayTd"></td>
+                            <td class="displayTd"></td>
+                        </tr>
+                        <tr>
+                            <td class="displayTd"></td>
+                            <td class="displayTd"></td>
+                            <td class="displayTd"></td>
+                            <td class="displayTd"></td>
+                        </tr>
+                        <tr>
+                            <td class="displayTd"></td>
+                            <td class="displayTd"></td>
+                            <td class="displayTd"></td>
+                            <td class="displayTd"></td>
+                        </tr>
+                    </table>
+                </div>
+                <div id="next_5" style="margin: 10px;">
+                    <table>
+                        <tr>
+                            <td class="displayTd"></td>
+                            <td class="displayTd"></td>
+                            <td class="displayTd"></td>
+                            <td class="displayTd"></td>
+                        </tr>
+                        <tr>
+                            <td class="displayTd"></td>
+                            <td class="displayTd"></td>
+                            <td class="displayTd"></td>
+                            <td class="displayTd"></td>
+                        </tr>
+                        <tr>
+                            <td class="displayTd"></td>
+                            <td class="displayTd"></td>
+                            <td class="displayTd"></td>
+                            <td class="displayTd"></td>
+                        </tr>
+                        <tr>
+                            <td class="displayTd"></td>
+                            <td class="displayTd"></td>
+                            <td class="displayTd"></td>
+                            <td class="displayTd"></td>
+                        </tr>
+                    </table>
+                </div>
+                <button id="controls_btn" style="padding: 5%;">Hide/Show Controls</button>
+            </div>
+                
+            <div id="otherPlayers" style="
+                    max-height: 100vh;
+                    flex-wrap: wrap;
+                    display: inline-flex;
+                
+                ">
+            </div>
+
+            
+
+            </div>
+            <button id="game_start">START</button>
+            <a style="color: white;">Join another room:</a>
+            <input id="target_room" type="text"/>
+            <button id="joinBtn">join</button>
+            <a style="color: white; font-weight: bold;">Your ID: </a>
+            <a id="user_id" style="color: lightblue;"> ss</a>
+            <a style="color: white; font-weight: bold;">Current room: </a>
+            <a id="room_id" style="color: lightblue;"> </a>
+            
+        </div>
+
+        <!-- <script src="tetris.js"></script> -->
+        <script src="/socket.io/socket.io.js"></script>
+        <script src="/scripts/connection-logic.js" type="module"></script>
+        <script src="/scripts/piece-logic.js" type="module"></script>
+        <script src="/scripts/game-logic.js" type="module"></script>
+    </body>
+</html>
